@@ -1,11 +1,10 @@
----
 mode: rule
 mixed-port: 7893
 allow-lan: true
 ipv6: true
 log-level: warning
 external-controller: 0.0.0.0:9090
-external-ui: "/usr/share/openclash/ui"
+external-ui: "./ui"
 external-ui-url: https://codeload.github.com/MetaCubeX/metacubexd/zip/refs/heads/gh-pages
 secret: Oo4ShMr7
 keep-alive-interval: 60
@@ -343,12 +342,14 @@ dns:
   fallback:
   - https://dns.google/dns-query
   - https://dns.cloudflare.com/dns-query
+
 proxy-providers:
   SUB-Provider-01:
     type: http
-    url: https://new.adoptangelaboradvacotionclwonthorughconfrmcompimentdeseertaltar.org/sub/7fefa57042e1b3cf/clash
+    url: ''
     interval: 43200
     path: "./proxy_provider/SUB-Provider-01.yaml"
+
 proxy-groups:
 - name: "📡.<DNS>--GlobalDNS"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
@@ -360,16 +361,14 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🔰🇺🇸.Line-[Relay.VPS]-US.First"
-  - "🔰🇯🇵.Line-[Relay.VPS]-JP.First"
-  - "🔰🇬🇧.Line-[Relay.VPS]-UK.First"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇬🇧.Line-[UK]"
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
   - DIRECT
-  - REJECT
-  - REJECT-DROP
+  hidden: true
+
 - name: "📡.<DNS>--ChinaDNS"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
   url: https://www.apple.com/library/test/success.html
@@ -381,8 +380,8 @@ proxy-groups:
   lazy: true
   proxies:
   - DIRECT
-  - REJECT-DROP
-  - REJECT
+  hidden: true
+
 - name: "📡.<NTP>--GlobalNTP"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
   url: https://www.apple.com/library/test/success.html
@@ -393,16 +392,14 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🔰🇺🇸.Line-[Relay.VPS]-US.First"
-  - "🔰🇯🇵.Line-[Relay.VPS]-JP.First"
-  - "🔰🇬🇧.Line-[Relay.VPS]-UK.First"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇬🇧.Line-[UK]"
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
   - DIRECT
-  - REJECT
-  - REJECT-DROP
+  hidden: true
+
 - name: "📡.<NTP>--ChinaNTP"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
   url: https://www.apple.com/library/test/success.html
@@ -414,8 +411,8 @@ proxy-groups:
   lazy: true
   proxies:
   - DIRECT
-  - REJECT-DROP
-  - REJECT
+  hidden: true
+
 - name: "📡.<Protection>--HttpDNS"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Reject.png
   url: https://www.apple.com/library/test/success.html
@@ -429,9 +426,12 @@ proxy-groups:
   - REJECT-DROP
   - REJECT
   - DIRECT
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇬🇧.Line-[UK]"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇭🇰.<Country>--HK"
+  - "🇸🇬.<Country>--SG"
+  hidden: true
+
 - name: "⛔️.<Protection>--Hijacking"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Reject.png
   url: https://www.apple.com/library/test/success.html
@@ -445,6 +445,7 @@ proxy-groups:
   - REJECT-DROP
   - REJECT
   - DIRECT
+  hidden: true
 - name: "💻.<Lan>"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -458,6 +459,8 @@ proxy-groups:
   - DIRECT
   - REJECT
   - REJECT-DROP
+  hidden: true
+
 - name: "🇭🇰.<Bank>--HK"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -469,8 +472,27 @@ proxy-groups:
   lazy: true
   proxies:
   - DIRECT
-  - "🌐🇭🇰.Line-[Global]-HK.First"
-  - "🇭🇰.Line-[HK]"
+  - "🇭🇰.<Country>--HK"
+  hidden: true
+
+- name: "♾️.<Final>"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Final.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+
 - name: "📺.<Video>--YouTube"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -481,17 +503,20 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🇭🇰.Line-[HK]"
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
+
 - name: "📺.<Video>--Porn"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -502,17 +527,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💛.<Social>--Twitter"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -523,17 +550,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💛.<Social>--Telegram"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -544,17 +573,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💛.<Social>--Whatsapp"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -565,17 +596,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--AppleAI"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -586,17 +619,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--OpenAI"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -607,17 +642,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--Grok"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -628,17 +665,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--Claude"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -649,17 +688,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--Gemini"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -670,17 +711,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--Copilot"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -691,17 +734,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
+
 - name: "💡.<AI>--GlobalAI"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -712,18 +757,19 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇸🇬.<Country>--SG"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
+
 - name: "🖥️.<Remote>--Parsec"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -735,16 +781,21 @@ proxy-groups:
   lazy: true
   proxies:
   - DIRECT
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇭🇰.<Country>--HK"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
+  - "🇮🇳.<Country>--IN"
+  - "🇹🇼.<Country>--TW"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - REJECT
-  - REJECT-DROP
+
 - name: "☁️.<Apps>--Google"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Google_Search.png
   url: https://www.apple.com/library/test/success.html
@@ -756,16 +807,23 @@ proxy-groups:
   lazy: true
   proxies:
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - "🌐🇺🇸.Line-[Global]-US.First"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇭🇰.<Country>--HK"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
+  - "🇮🇳.<Country>--IN"
+  - "🇹🇼.<Country>--TW"
   - DIRECT
   - REJECT
   - REJECT-DROP
+
 - name: "☁️.<Apps>--Microsoft"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Microsoft.png
   url: https://www.apple.com/library/test/success.html
@@ -776,17 +834,22 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
   - DIRECT
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇭🇰.<Country>--HK"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
+  - "🇮🇳.<Country>--IN"
+  - "🇹🇼.<Country>--TW"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - REJECT
-  - REJECT-DROP
+
 - name: "☁️.<Apps>--Apple"
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Apple.png
   url: https://www.apple.com/library/test/success.html
@@ -798,411 +861,21 @@ proxy-groups:
   lazy: true
   proxies:
   - DIRECT
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇯🇵.<Country>--JP"
+  - "🇭🇰.<Country>--HK"
+  - "🇸🇬.<Country>--SG"
+  - "🇬🇧.<Country>--UK"
+  - "🇨🇦.<Country>--CA"
+  - "🇫🇷.<Country>--FR"
+  - "🇦🇺.<Country>--AU"
+  - "🇩🇪.<Country>--DE"
+  - "🇰🇷.<Country>--KR"
+  - "🇮🇳.<Country>--IN"
+  - "🇹🇼.<Country>--TW"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
   - "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  - REJECT
-  - REJECT-DROP
-- name: "🇺🇸.<Country>--US"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🌐🇺🇸.Line-[Global]-US.First"
-  - "🇺🇸.Line-[US]"
-  - "🇺🇸🔰.VPS-[US.HomeIP]-(美国住宅节点)"
-  - "🔰🇺🇸.Line-[Relay.VPS]-US.First"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-- name: "♾️.<Final>"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Final.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇭🇰.Line-[HK]"
-  - "🌐🇺🇸.Line-[Global]-US.First"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇬🇧.Line-[UK]"
-  - "🇸🇬.Line-[SG]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-- name: "🌐🇺🇸.Line-[Global]-US.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇬🇧.Line-[UK]"
-- name: "🌐🇬🇧.Line-[Global]-UK.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇬🇧.Line-[UK]"
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-- name: "🌐🇭🇰.Line-[Global]-HK.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇯🇵.Line-[JP]"
-  - "🇺🇸.Line-[US]"
-- name: "🇺🇸.Line-[US]"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇺🇸🔰.VPS-[US.Relay]-(美国中转节点)"
-- name: "🇯🇵.Line-[JP]"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇯🇵🔰.VPS-[JP.Relay]-(日本中转节点)"
-- name: "🇬🇧.Line-[UK]"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇬🇧🔰.VPS-[UK.Relay]-(英国中转节点)"
-- name: "🇭🇰.Line-[HK]"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇭🇰🔰.VPS-[HK.Relay]-(香港节点池)"
-- name: "🇸🇬.Line-[SG]"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇸🇬🔰.VPS-[SG.Relay]-(新加坡节点池)"
-- name: "🔰🇺🇸.Line-[Relay.VPS]-US.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇺🇸🔰.VPS-[US.Relay]-(美国中转节点)"
-  - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-- name: "🔰🇯🇵.Line-[Relay.VPS]-JP.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇯🇵🔰.VPS-[JP.Relay]-(日本中转节点)"
-  - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-- name: "🔰🇬🇧.Line-[Relay.VPS]-UK.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇬🇧🔰.VPS-[UK.Relay]-(英国中转节点)"
-  - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-- name: "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇭🇰🔰.VPS-[HK.Relay]-(香港节点池)"
-  - "🇯🇵🔰.VPS-[JP.Relay]-(日本中转节点)"
-  - "🇸🇬🔰.VPS-[SG.Relay]-(新加坡节点池)"
-  - "🇺🇸🔰.VPS-[US.Relay]-(美国中转节点)"
-  - "🇬🇧🔰.VPS-[UK.Relay]-(英国中转节点)"
-  uselightgbm: true
-- name: "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Download.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇭🇰.Line-[HK]"
-  - "🇯🇵.Line-[JP]"
-  - "🇸🇬.Line-[SG]"
-  - "🇺🇸.Line-[US]"
-  - "🇬🇧.Line-[UK]"
-- name: "🇺🇸🔰.VPS-[US.HomeIP]-(美国住宅节点)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Fries.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:美国|美國|(?:^|[^A-Z])US(?:$|[^A-Z])|USA|United\\s*States)"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇺🇸🔰.VPS-[US.Relay]-(美国中转节点)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:美国|美國|(?:^|[^A-Z])US(?:$|[^A-Z])|USA|United\\s*States)"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇯🇵🔰.VPS-[JP.Relay]-(日本中转节点)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:日本|Japan|(?:^|[^A-Z])JP(?:$|[^A-Z]))"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇬🇧🔰.VPS-[UK.Relay]-(英国中转节点)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:英国|英國|United\\s*Kingdom|(?:^|[^A-Z])UK(?:$|[^A-Z])|(?:^|[^A-Z])GB(?:$|[^A-Z]))"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇭🇰🔰.VPS-[HK.Relay]-(香港节点池)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:香港|Hong\\s*Kong|(?:^|[^A-Z])HK(?:$|[^A-Z]))"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇸🇬🔰.VPS-[SG.Relay]-(新加坡节点池)"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: smart
-  interval: 900
-  tolerance: 20
-  timeout: 5000
-  lazy: false
-  include-all: true
-  filter: "(?i)(?:新加坡|Singapore|(?:^|[^A-Z])SG(?:$|[^A-Z]))"
-  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
-  benchmark-url: https://www.apple.com/library/test/success.html
-  benchmark-timeout: 5
-  hidden: false
-  uselightgbm: true
-- name: "🇬🇧.<Country>--UK"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🌐🇬🇧.Line-[Global]-UK.First"
-  - "🇬🇧.Line-[UK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
-- name: "🇯🇵.<Country>--JP"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🌐🇯🇵.Line-[Global]-JP.First"
-  - "🇯🇵.Line-[JP]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
-- name: "🇭🇰.<Country>--HK"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🌐🇭🇰.Line-[Global]-HK.First"
-  - "🇭🇰.Line-[HK]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
-- name: "🇸🇬.<Country>--SG"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: select
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🌐🇸🇬.Line-[Global]-SG.First"
-  - "🇸🇬.Line-[SG]"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
-- name: "🌐🇯🇵.Line-[Global]-JP.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇯🇵.Line-[JP]"
-  - "🇺🇸.Line-[US]"
-  - "🇬🇧.Line-[UK]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-- name: "🌐🇸🇬.Line-[Global]-SG.First"
-  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
-  url: https://www.apple.com/library/test/success.html
-  expected-status: 200
-  max-failed-times: 5
-  type: fallback
-  interval: 900
-  timeout: 5000
-  lazy: true
-  proxies:
-  - "🇸🇬.Line-[SG]"
-  - "🇭🇰.Line-[HK]"
-  - "🇯🇵.Line-[JP]"
-  - "🇺🇸.Line-[US]"
-  - "🇬🇧.Line-[UK]"
+
 - name: "💰.<Finance>--Paypal"
   icon: ''
   url: https://www.apple.com/library/test/success.html
@@ -1213,17 +886,264 @@ proxy-groups:
   timeout: 5000
   lazy: true
   proxies:
-  - "🇺🇸.Line-[US]"
-  - "🇯🇵.Line-[JP]"
-  - "🇭🇰.Line-[HK]"
-  - "🇸🇬.Line-[SG]"
-  - "🇬🇧.Line-[UK]"
-  - "🌐🇺🇸.Line-[Global]-US.First"
+  - "🇺🇸.<Country>--US"
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
   - "🔰⚡.Line-[Relay.VPS]-Low.Latency"
-  - DIRECT
-  - REJECT
-  - REJECT-DROP
-  - PASS
+
+- name: "🇭🇰.<Country>--HK"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:香港|Hong\\s*Kong|(?:^|[^A-Z])HK(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  proxies:
+  - "🇭🇰.<Auto>--HK"
+- name: "🇸🇬.<Country>--SG"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:新加坡|Singapore|(?:^|[^A-Z])SG(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  proxies:
+  - "🇸🇬.<Auto>--SG"
+
+- name: "🇺🇸.<Country>--US"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:美国|美國|(?:^|[^A-Z])US(?:$|[^A-Z])|USA|United\\s*States)"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
+  proxies:
+  - "🇺🇸.<Auto>--US"
+
+- name: "🇬🇧.<Country>--UK"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:英国|英國|United\\s*Kingdom|(?:^|[^A-Z])UK(?:$|[^A-Z])|(?:^|[^A-Z])GB(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+
+- name: "🇯🇵.<Country>--JP"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:日本|Japan|(?:^|[^A-Z])JP(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  proxies:
+  - "🇯🇵.<Auto>--JP"
+
+- name: "🇨🇦.<Country>--CA"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Canada.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:加拿大|Canada|(?:^|[^A-Z])CA(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+- name: "🇫🇷.<Country>--FR"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/France.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:法国|法國|France|(?:^|[^A-Z])FR(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+- name: "🇦🇺.<Country>--AU"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Australia.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:澳大利亚|澳洲|Australia|(?:^|[^A-Z])AU(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+- name: "🇩🇪.<Country>--DE"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Germany.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:德国|德國|Germany|(?:^|[^A-Z])DE(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+- name: "🇰🇷.<Country>--KR"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Korea.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:韩国|韓國|韩国|首尔|首爾|Korea|(?:^|[^A-Z])KR(?:$|[^A-Z])|KOR)"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+- name: "🇮🇳.<Country>--IN"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/India.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:印度|India|(?:^|[^A-Z])IN(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
+- name: "🇹🇼.<Country>--TW"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Taiwan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:台湾|臺灣|台灣|Taiwan|(?:^|[^A-Z])TW(?:$|[^A-Z])|新北|彰化)"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+
+
+
+- name: "🇺🇸.<Auto>--US"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:美国|美國|(?:^|[^A-Z])US(?:$|[^A-Z])|USA|United\\s*States)"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
+  hidden: true
+
+- name: "🇯🇵.<Auto>--JP"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:日本|Japan|(?:^|[^A-Z])JP(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  hidden: true
+- name: "🇭🇰.<Auto>--HK"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:香港|Hong\\s*Kong|(?:^|[^A-Z])HK(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  hidden: true
+- name: "🇸🇬.<Auto>--SG"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  include-all: true
+  filter: "(?i)(?:新加坡|Singapore|(?:^|[^A-Z])SG(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  hidden: true
+
+- name: "🔰⚡.Line-[Relay.VPS]-Low.Latency"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - "🇺🇸.<Country>--US"
+  - "🇬🇧.<Country>--UK"
+  hidden: true
+
+- name: "🔰⬇️.Line-[Relay.VPS]-Max.Traffic"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Download.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "🇭🇰.<Country>--HK"
+  - "🇯🇵.<Country>--JP"
+  - "🇸🇬.<Country>--SG"
+  - "🇺🇸.<Country>--US"
+  - "🇬🇧.<Country>--UK"
+  hidden: true
+
 rules:
 - "AND,((OR,((DST-PORT,53),(DST-PORT,853))),(NOT,((GEOIP,CN)))) , 📡.<DNS>--GlobalDNS"
 - "rule-set        , GlobalDNS_Domain                           , 📡.<DNS>--GlobalDNS"
@@ -1523,8 +1443,8 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs
     path: "./rule_provider/oc-cn-domain.mrs"
-redir-port: 7892
-tproxy-port: 7895
+# redir-port: 7892
+# tproxy-port: 7895
 port: 7890
 socks-port: 7891
 bind-address: "*"

@@ -1,0 +1,1402 @@
+---
+mode: rule
+mixed-port: 7890
+allow-lan: false
+ipv6: false
+log-level: warning
+external-controller: 127.0.0.1:9090
+external-ui: "./UI"
+external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
+secret: ''
+keep-alive-interval: 60
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: false
+geodata-mode: false
+geodata-loader: memconservative
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat
+  mmdb: https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country-without-asn.mmdb
+  asn: https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb
+  geosite: https://cdn.jsdelivr.net/gh/v2fly/domain-list-community@release/dlc.dat
+profile:
+  tracing: true
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+    TLS:
+      ports:
+      - 443
+      - 8443
+    QUIC:
+      ports:
+      - 443
+      - 8443
+  force-domain:
+  - "+.v2ex.com"
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - "+.apple.com"
+  - "+.icloud.com"
+  - "+.wechat.com"
+  - "+.qpic.cn"
+  - "+.qq.com"
+  - "+.wechatapp.com"
+  - "+.vivox.com"
+  - "+.oray.com"
+  - "+.sunlogin.net"
+ntp:
+  enable: true
+  write-to-system: false
+  server: time.apple.com
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  port: 123
+tun:
+  enable: true
+  auto-detect-interface: true
+  auto-route: true
+  stack: system
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+hosts:
+  "+.clash.dev":
+  - 127.0.0.1
+  "+.stash.dev":
+  - 127.0.0.1
+dns:
+  enable: true
+  prefer-h3: false
+  ipv6: false
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  use-system-hosts: true
+  skip-cert-verify: false
+  proxy-server-nameserver:
+  - system
+  default-nameserver:
+  - system
+  direct-nameserver:
+  - https://dns.alidns.com/dns-query
+  - https://dns.google/dns-query
+  nameserver:
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+  respect-rules: true
+  follow-rule: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  nameserver-policy:
+    rule-set:GlobalDNS_Domain:
+    - system
+    rule-set:ChinaDNS_Domain:
+    - system
+    geosite:private:
+    - system
+    rule-set:Lan_Do_Resolve:
+    - system
+    "+.oca.nflxvideo.net":
+    - "https://dns.alidns.com/dns-query#\U0001F39A.<Speedtest>"
+    - "https://dns.google/dns-query#\U0001F39A.<Speedtest>"
+    geosite:pornhub:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4FA.<Video>--Porn"
+    - "https://dns.google/dns-query#\U0001F4FA.<Video>--Porn"
+    rule-set:Pornhub_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4FA.<Video>--Porn"
+    - "https://dns.google/dns-query#\U0001F4FA.<Video>--Porn"
+    geosite:whatsapp:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Whatsapp"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Whatsapp"
+    rule-set:Whatsapp_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Whatsapp"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Whatsapp"
+    geosite:telegram:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Telegram"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Telegram"
+    rule-set:Telegram_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Telegram"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Telegram"
+    geosite:apple-intelligence:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--AppleAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--AppleAI"
+    rule-set:AppleAI_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--AppleAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--AppleAI"
+    geosite:openai:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--OpenAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--OpenAI"
+    rule-set:OpenAI_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--OpenAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--OpenAI"
+    geosite:xai:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Grok"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Grok"
+    rule-set:Grok_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Grok"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Grok"
+    geosite:twitter:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Twitter"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Twitter"
+    rule-set:Twitter_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F49B.<Social>--Twitter"
+    - "https://dns.google/dns-query#\U0001F49B.<Social>--Twitter"
+    geosite:anthropic:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Claude"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Claude"
+    rule-set:Claude_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Claude"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Claude"
+    geosite:google-gemini:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Gemini"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Gemini"
+    rule-set:Gemini_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Gemini"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Gemini"
+    rule-set:Copilot_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--Copilot"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--Copilot"
+    geosite:category-ai-!cn:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--GlobalAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--GlobalAI"
+    rule-set:Parsec_Domain:
+    - "https://cloudflare-dns.com/dns-query#\U0001F5A5️.<Remote>--Parsec"
+    - "https://dns.google/dns-query#\U0001F5A5️.<Remote>--Parsec"
+    geosite:youtube:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4FA.<Video>--YouTube"
+    - "https://dns.google/dns-query#\U0001F4FA.<Video>--YouTube"
+    rule-set:YouTube_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4FA.<Video>--YouTube"
+    - "https://dns.google/dns-query#\U0001F4FA.<Video>--YouTube"
+    geosite:google:
+    - https://cloudflare-dns.com/dns-query#☁️.<Apps>--Google
+    - https://dns.google/dns-query#☁️.<Apps>--Google
+    rule-set:Google_Do_Resolve:
+    - https://cloudflare-dns.com/dns-query#☁️.<Apps>--Google
+    - https://dns.google/dns-query#☁️.<Apps>--Google
+    token.safebrowsing.apple:
+    - "https://cloudflare-dns.com/dns-query#\U0001F4A1.<AI>--AppleAI"
+    - "https://dns.google/dns-query#\U0001F4A1.<AI>--AppleAI"
+    rule-set:Apple_Domain:
+    - https://dns.alidns.com/dns-query#☁️.<Apps>--Apple
+    - https://dns.google/dns-query#☁️.<Apps>--Apple
+    rule-set:MicrosoftAPPs_Domain:
+    - https://dns.alidns.com/dns-query#☁️.<Apps>--Microsoft
+    - https://dns.google/dns-query#☁️.<Apps>--Microsoft
+    geosite:paypal:
+    - "https://cloudflare-dns.com/dns-query#💰.<Finance>--Paypal"
+    - "https://dns.google/dns-query#💰.<Finance>--Paypal"
+    rule-set:Paypal_Do_Resolve:
+    - "https://cloudflare-dns.com/dns-query#💰.<Finance>--Paypal"
+    - "https://dns.google/dns-query#💰.<Finance>--Paypal"
+    "+.*":
+    - https://cloudflare-dns.com/dns-query#♾️.<Final>
+    - https://dns.google/dns-query#♾️.<Final>
+proxy-providers:
+  SUB-Provider-01:
+    type: http
+    url: ''
+    interval: 43200
+    path: "./proxy-providers/SUB-Provider-01.yaml"
+proxy-groups:
+- name: "\U0001F4E1.<DNS>--GlobalDNS"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F530\U0001F1FA\U0001F1F8.Line-[Relay.VPS]-US.First"
+  - "\U0001F530\U0001F1EF\U0001F1F5.Line-[Relay.VPS]-JP.First"
+  - "\U0001F530\U0001F1EC\U0001F1E7.Line-[Relay.VPS]-UK.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+
+- name: "\U0001F4E1.<DNS>--ChinaDNS"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - DIRECT
+  - REJECT-DROP
+  - REJECT
+
+
+- name: "\U0001F4E1.<NTP>--GlobalNTP"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F530\U0001F1FA\U0001F1F8.Line-[Relay.VPS]-US.First"
+  - "\U0001F530\U0001F1EF\U0001F1F5.Line-[Relay.VPS]-JP.First"
+  - "\U0001F530\U0001F1EC\U0001F1E7.Line-[Relay.VPS]-UK.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F4E1.<NTP>--ChinaNTP"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Star.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - DIRECT
+  - REJECT-DROP
+  - REJECT
+- name: "\U0001F4E1.<Protection>--HttpDNS"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Reject.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - REJECT-DROP
+  - REJECT
+  - DIRECT
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+- name: "⛔️.<Protection>--Hijacking"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Reject.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - REJECT-DROP
+  - REJECT
+  - DIRECT
+- name: "\U0001F4BB.<Lan>"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F1ED\U0001F1F0.<Bank>--HK"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - DIRECT
+  - "\U0001F310\U0001F1ED\U0001F1F0.Line-[Global]-HK.First"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+- name: "\U0001F4FA.<Video>--YouTube"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F4FA.<Video>--Porn"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F49B.<Social>--Twitter"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F49B.<Social>--Telegram"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+- name: "\U0001F49B.<Social>--Whatsapp"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--AppleAI"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+- name: "\U0001F4A1.<AI>--OpenAI"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--Grok"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--Claude"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--Gemini"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - ☁️.<Apps>--Google
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--Copilot"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F4A1.<AI>--GlobalAI"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - DIRECT
+
+- name: "\U0001F5A5️.<Remote>--Parsec"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - DIRECT
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  - REJECT
+  - REJECT-DROP
+
+- name: "☁️.<Apps>--Google"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Google_Search.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+
+- name: "☁️.<Apps>--Microsoft"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Microsoft.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - DIRECT
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+
+- name: "☁️.<Apps>--Apple"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Apple.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - DIRECT
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+
+- name: "\U0001F4B0.<Finance>--Paypal"
+  icon: ''
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  - DIRECT
+  - REJECT
+  - REJECT-DROP
+  - PASS
+
+- name: "♾️.<Final>"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Final.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - DIRECT
+
+
+
+- name: "\U0001F1ED\U0001F1F0.<Country>--HK"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F310\U0001F1ED\U0001F1F0.Line-[Global]-HK.First"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - DIRECT
+
+- name: "\U0001F1F8\U0001F1EC.<Country>--SG"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F310\U0001F1F8\U0001F1EC.Line-[Global]-SG.First"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - DIRECT
+
+- name: "\U0001F1FA\U0001F1F8.<Country>--US"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F530\U0001F1FA\U0001F1F8.Line-[Relay.VPS]-US.First"
+  - DIRECT
+
+- name: "\U0001F1EC\U0001F1E7.<Country>--UK"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F310\U0001F1EC\U0001F1E7.Line-[Global]-UK.First"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - DIRECT
+
+- name: "\U0001F1EF\U0001F1F5.<Country>--JP"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: select
+  interval: 900
+  timeout: 5000
+  lazy: true
+  proxies:
+  - "\U0001F310\U0001F1EF\U0001F1F5.Line-[Global]-JP.First"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - DIRECT
+
+
+- name: "\U0001F1FA\U0001F1F8.Line-[US]"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8\U0001F530.VPS-[US.Relay]-(美国中转节点)"
+
+- name: "\U0001F1EF\U0001F1F5.Line-[JP]"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EF\U0001F1F5\U0001F530.VPS-[JP.Relay]-(日本中转节点)"
+
+- name: "\U0001F1EC\U0001F1E7.Line-[UK]"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EC\U0001F1E7\U0001F530.VPS-[UK.Relay]-(英国中转节点)"
+
+- name: "\U0001F1ED\U0001F1F0.Line-[HK]"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0\U0001F530.VPS-[HK.Relay]-(香港节点池)"
+
+- name: "\U0001F1F8\U0001F1EC.Line-[SG]"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1F8\U0001F1EC\U0001F530.VPS-[SG.Relay]-(新加坡节点池)"
+
+
+- name: "\U0001F310\U0001F1EF\U0001F1F5.Line-[Global]-JP.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+
+- name: "\U0001F310\U0001F1F8\U0001F1EC.Line-[Global]-SG.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+
+- name: "\U0001F310\U0001F1FA\U0001F1F8.Line-[Global]-US.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+
+- name: "\U0001F310\U0001F1EC\U0001F1E7.Line-[Global]-UK.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+
+- name: "\U0001F310\U0001F1ED\U0001F1F0.Line-[Global]-HK.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Available_1.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+
+
+- name: "\U0001F530\U0001F1FA\U0001F1F8.Line-[Relay.VPS]-US.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1FA\U0001F1F8\U0001F530.VPS-[US.Relay]-(美国中转节点)"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+
+- name: "\U0001F530\U0001F1EF\U0001F1F5.Line-[Relay.VPS]-JP.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EF\U0001F1F5\U0001F530.VPS-[JP.Relay]-(日本中转节点)"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+
+- name: "\U0001F530\U0001F1EC\U0001F1E7.Line-[Relay.VPS]-UK.First"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1EC\U0001F1E7\U0001F530.VPS-[UK.Relay]-(英国中转节点)"
+  - "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+
+- name: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Auto.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0\U0001F530.VPS-[HK.Relay]-(香港节点池)"
+  - "\U0001F1EF\U0001F1F5\U0001F530.VPS-[JP.Relay]-(日本中转节点)"
+  - "\U0001F1F8\U0001F1EC\U0001F530.VPS-[SG.Relay]-(新加坡节点池)"
+  - "\U0001F1FA\U0001F1F8\U0001F530.VPS-[US.Relay]-(美国中转节点)"
+  - "\U0001F1EC\U0001F1E7\U0001F530.VPS-[UK.Relay]-(英国中转节点)"
+
+- name: "\U0001F530⬇️.Line-[Relay.VPS]-Max.Traffic"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Download.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: fallback
+  interval: 900
+  timeout: 5000
+  lazy: true
+  hidden: true
+  proxies:
+  - "\U0001F1ED\U0001F1F0.Line-[HK]"
+  - "\U0001F1EF\U0001F1F5.Line-[JP]"
+  - "\U0001F1F8\U0001F1EC.Line-[SG]"
+  - "\U0001F1FA\U0001F1F8.Line-[US]"
+  - "\U0001F1EC\U0001F1E7.Line-[UK]"
+
+
+- name: "\U0001F1FA\U0001F1F8\U0001F530.VPS-[US.Relay]-(美国中转节点)"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_States.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: false
+  include-all: true
+  filter: "(?i)(?:美国|美國|(?:^|[^A-Z])US(?:$|[^A-Z])|USA|United\\s*States)"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi|限速)"
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  hidden: true
+
+- name: "\U0001F1EF\U0001F1F5\U0001F530.VPS-[JP.Relay]-(日本中转节点)"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Japan.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: false
+  include-all: true
+  filter: "(?i)(?:日本|Japan|(?:^|[^A-Z])JP(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  hidden: true
+
+- name: "\U0001F1EC\U0001F1E7\U0001F530.VPS-[UK.Relay]-(英国中转节点)"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/United_Kingdom.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: false
+  include-all: true
+  filter: "(?i)(?:英国|英國|United\\s*Kingdom|(?:^|[^A-Z])UK(?:$|[^A-Z])|(?:^|[^A-Z])GB(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  hidden: true
+
+- name: "\U0001F1ED\U0001F1F0\U0001F530.VPS-[HK.Relay]-(香港节点池)"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Hong_Kong.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: false
+  include-all: true
+  filter: "(?i)(?:香港|Hong\\s*Kong|(?:^|[^A-Z])HK(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  hidden: true
+
+- name: "\U0001F1F8\U0001F1EC\U0001F530.VPS-[SG.Relay]-(新加坡节点池)"
+  icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@latest/IconSet/Color/Singapore.png
+  url: https://www.apple.com/library/test/success.html
+  expected-status: 200
+  max-failed-times: 5
+  type: url-test
+  interval: 900
+  tolerance: 20
+  timeout: 5000
+  lazy: false
+  include-all: true
+  filter: "(?i)(?:新加坡|Singapore|(?:^|[^A-Z])SG(?:$|[^A-Z]))"
+  exclude-filter: "(?i)(?:PrxChain|ProxyChain|Proxy\\s*Chain|代理链|代理鏈|Line-|<|VPS-\\[|DIRECT|REJECT|PASS|官网|WiFi)"
+  benchmark-url: https://www.apple.com/library/test/success.html
+  benchmark-timeout: 5
+  hidden: true
+
+- name: 🚫广告拦截
+  icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png
+  type: select
+  proxies:
+    - REJECT
+    - DIRECT
+
+rules:
+# - rule-set        , REJECT                                      , 🚫广告拦截
+- "AND,((OR,((DST-PORT,53),(DST-PORT,853))),(NOT,((GEOIP,CN)))) , \U0001F4E1.<DNS>--GlobalDNS"
+- "rule-set        , GlobalDNS_Domain                           , \U0001F4E1.<DNS>--GlobalDNS"
+- "rule-set        , GlobalDNS_IP                               , \U0001F4E1.<DNS>--GlobalDNS"
+- "AND,((OR,((DST-PORT,53),(DST-PORT,853))),(GEOIP,CN))         , \U0001F4E1.<DNS>--ChinaDNS"
+- "rule-set        , ChinaDNS_Domain                            , \U0001F4E1.<DNS>--ChinaDNS"
+- "rule-set        , ChinaDNS_IP                                , \U0001F4E1.<DNS>--ChinaDNS"
+- "AND,((NETWORK,udp),(DST-PORT,123),(NOT,((GEOIP,CN))))        , \U0001F4E1.<NTP>--GlobalNTP"
+- "AND,((NETWORK,udp),(DST-PORT,123),(GEOIP,CN))                , \U0001F4E1.<NTP>--ChinaNTP"
+- "geosite         , private                                    , \U0001F4BB.<Lan>"
+- "rule-set        , Lan_Do_Resolve                             , \U0001F4BB.<Lan>"
+- "geosite         , category-httpdns-cn                        , \U0001F4E1.<Protection>--HttpDNS"
+- "rule-set        , BlockHttpDNS_Do_Resolve                    , \U0001F4E1.<Protection>--HttpDNS"
+- rule-set        , Hijacking_Do_Resolve                        , ⛔️.<Protection>--Hijacking
+- rule-set        , HijackingPlus_Do_Resolve                    , ⛔️.<Protection>--Hijacking
+- rule-set        , PreRepairEasyPrivacy_REJECT_Do_Resolve      , REJECT-DROP
+- rule-set        , GeositeCN_Domain                            , DIRECT
+- geoip           , cn                                          , DIRECT
+- geosite         , cn                                         , DIRECT
+- geosite         , cloudflare-cn                              , DIRECT
+- rule-set        , CloudflareCN_Do_Resolve                    , DIRECT
+- "rule-set        , BankHK_Domain                              , \U0001F1ED\U0001F1F0.<Bank>--HK"
+- "geosite         , paypal                                     , \U0001F4B0.<Finance>--Paypal"
+- "rule-set        , Paypal_Do_Resolve                          , \U0001F4B0.<Finance>--Paypal"
+- "geosite         , pornhub                                    , \U0001F4FA.<Video>--Porn"
+- "rule-set        , Pornhub_Domain                             , \U0001F4FA.<Video>--Porn"
+- "geosite         , whatsapp                                   , \U0001F49B.<Social>--Whatsapp"
+- "rule-set        , Whatsapp_Do_Resolve                        , \U0001F49B.<Social>--Whatsapp"
+- "geosite         , telegram                                   , \U0001F49B.<Social>--Telegram"
+- "rule-set        , Telegram_Do_Resolve                        , \U0001F49B.<Social>--Telegram"
+- "geosite         , apple-intelligence                         , \U0001F4A1.<AI>--AppleAI"
+- "rule-set        , AppleAI_Domain                             , \U0001F4A1.<AI>--AppleAI"
+- "geosite         , openai                                     , \U0001F4A1.<AI>--OpenAI"
+- "rule-set        , OpenAI_Do_Resolve                          , \U0001F4A1.<AI>--OpenAI"
+- "geosite         , xai                                        , \U0001F4A1.<AI>--Grok"
+- "rule-set        , Grok_Domain                                , \U0001F4A1.<AI>--Grok"
+- "geosite         , twitter                                    , \U0001F49B.<Social>--Twitter"
+- "rule-set        , Twitter_Do_Resolve                         , \U0001F49B.<Social>--Twitter"
+- "geosite         , anthropic                                  , \U0001F4A1.<AI>--Claude"
+- "rule-set        , Claude_Do_Resolve                          , \U0001F4A1.<AI>--Claude"
+- "geosite         , google-gemini                              , \U0001F4A1.<AI>--Gemini"
+- "rule-set        , Gemini_Domain                              , \U0001F4A1.<AI>--Gemini"
+- "rule-set        , Copilot_Domain                             , \U0001F4A1.<AI>--Copilot"
+- "geosite         , category-ai-!cn                            , \U0001F4A1.<AI>--GlobalAI"
+- "rule-set        , Parsec_Domain                              , \U0001F5A5️.<Remote>--Parsec"
+- "geosite         , youtube                                    , \U0001F4FA.<Video>--YouTube"
+- "rule-set        , YouTube_Do_Resolve                         , \U0001F4FA.<Video>--YouTube"
+- geosite         , google                                     , ☁️.<Apps>--Google
+- rule-set        , Google_Do_Resolve                          , ☁️.<Apps>--Google
+- rule-set        , Apple_Domain                               , ☁️.<Apps>--Apple
+- rule-set        , Apple_IP                                   , ☁️.<Apps>--Apple
+- rule-set        , MicrosoftAPPs_Domain                       , ☁️.<Apps>--Microsoft
+- "domain-suffix   , us                                         , \U0001F1FA\U0001F1F8.<Country>--US"
+- "domain-suffix   , mil                                        , \U0001F1FA\U0001F1F8.<Country>--US"
+- "domain-suffix   , gov                                        , \U0001F1FA\U0001F1F8.<Country>--US"
+- "domain-suffix   , edu                                        , \U0001F1FA\U0001F1F8.<Country>--US"
+- "domain-suffix   , uk                                         , \U0001F1EC\U0001F1E7.<Country>--UK"
+- "domain-suffix   , gb                                         , \U0001F1EC\U0001F1E7.<Country>--UK"
+- MATCH                                                        , ♾️.<Final>
+
+rule-providers:
+  # REJECT:
+  #   type: http
+  #   behavior: domain
+  #   format: yaml
+  #   interval: 86400
+  #   url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+  #   path: ./ruleset/reject.txt
+  GlobalDNS_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/GlobalDNS/GlobalDNS_Domain.yaml
+    path: "./ruleset/GlobalDNS_Domain.yaml"
+  GlobalDNS_IP:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/GlobalDNS/GlobalDNS_IP.yaml
+    path: "./ruleset/GlobalDNS_IP.yaml"
+  ChinaDNS_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/ChinaDNS/ChinaDNS_Domain.yaml
+    path: "./ruleset/ChinaDNS_Domain.yaml"
+  ChinaDNS_IP:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/ChinaDNS/ChinaDNS_IP.yaml
+    path: "./ruleset/ChinaDNS_IP.yaml"
+  Lan_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Lan/Lan.yaml
+    path: "./ruleset/Lan.yaml"
+  BlockHttpDNS_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
+    path: "./ruleset/BlockHttpDNS.yaml"
+  Hijacking_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Hijacking/Hijacking.yaml
+    path: "./ruleset/Hijacking.yaml"
+  HijackingPlus_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/HijackingPlus/HijackingPlus.yaml
+    path: "./ruleset/HijackingPlus.yaml"
+  PreRepairEasyPrivacy_REJECT_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/PreRepairEasyPrivacy/PreRepairEasyPrivacy_REJECT.yaml
+    path: "./ruleset/PreRepairEasyPrivacy_REJECT.yaml"
+  BankHK_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Bank/BankHK_Domain.yaml
+    path: "./ruleset/BankHK_Domain.yaml"
+  YouTube_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/YouTube/YouTube.yaml
+    path: "./ruleset/YouTube.yaml"
+  Pornhub_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Pornhub/Pornhub_Domain.yaml
+    path: "./ruleset/Pornhub_Domain.yaml"
+  Twitter_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Twitter/Twitter.yaml
+    path: "./ruleset/Twitter.yaml"
+  Telegram_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Telegram/Telegram.yaml
+    path: "./ruleset/Telegram.yaml"
+  Whatsapp_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Whatsapp/Whatsapp.yaml
+    path: "./ruleset/Whatsapp.yaml"
+  AppleAI_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/AppleAI/AppleAI_Domain.yaml
+    path: "./ruleset/AppleAI_Domain.yaml"
+  OpenAI_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/OpenAI/OpenAI.yaml
+    path: "./ruleset/OpenAI.yaml"
+  Grok_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Grok/Grok_Domain.yaml
+    path: "./ruleset/Grok_Domian.yaml"
+  Gemini_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Gemini/Gemini_Domain.yaml
+    path: "./ruleset/Gemini_Domian.yaml"
+  Claude_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Claude/Claude.yaml
+    path: "./ruleset/Claude.yaml"
+  Copilot_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Copilot/Copilot_Domain.yaml
+    path: "./ruleset/Copilot_Domian.yaml"
+  Parsec_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Parsec/Parsec_Domain.yaml
+    path: "./ruleset/Parsec_Domain.yaml"
+  Google_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@latest/rule/Clash/Google/Google.yaml
+    path: "./ruleset/Google.yaml"
+  MicrosoftAPPs_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/MicrosoftAPPs/MicrosoftAPPs_Domain.yaml
+    path: "./ruleset/MicrosoftAPPs.yaml"
+  Apple_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Apple/Apple_Domain.yaml
+    path: "./ruleset/Apple_Domain.yaml"
+  Apple_IP:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Apple/Apple_IP.yaml
+    path: "./ruleset/Apple_IP.yaml"
+  GeositeCN_Domain:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/GeositeCN/GeositeCN_Domain.yaml
+    path: "./ruleset/GeositeCN_Domain.yaml"
+  CloudflareCN_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Cloudflarecn/Cloudflarecn.yaml
+    path: "./ruleset/CloudflareCN.yaml"
+  Paypal_Do_Resolve:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    proxy: "\U0001F530⚡.Line-[Relay.VPS]-Low.Latency"
+    url: https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/VirtualFinance/Paypal.yaml
+    path: "./ruleset/Paypal.yaml"
