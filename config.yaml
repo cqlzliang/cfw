@@ -442,49 +442,49 @@ rule-providers:
   REJECT:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     interval: 86400
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
     path: ./ruleset/reject.txt
   fake-ip-filter:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     interval: 86400
     url: https://cdn.jsdelivr.net/gh/juewuy/ShellCrash@dev/public/fake_ip_filter.list
     path: ./ruleset/fake_ip_filter.list
   private:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
     path: ./ruleset/private.yaml
     interval: 36000
   apple-cn:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/apple-cn.txt"
     path: ./ruleset/apple-cn.yaml
     interval: 86400
   direct:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./ruleset/direct.yaml
     interval: 86400
   proxy:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
     path: ./ruleset/proxy.yaml
     interval: 86400
   google:
     type: http
     behavior: domain
-    format: text
+    format: yaml
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
     path: ./ruleset/google.yaml
     interval: 86400
@@ -583,22 +583,22 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml"
     path: ./ruleset/apple.yaml
     interval: 86400
-  china:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/China/China.list"
-    path: ./ruleset/china.list
-    interval: 86400
+  # china:
+  #   type: http
+  #   behavior: classical
+  #   format: text
+  #   url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/China/China.list"
+  #   path: ./ruleset/china.list
+  #   interval: 86400
 rules:
   - RULE-SET,private,DIRECT
   - RULE-SET,REJECT,🚫广告拦截
   - RULE-SET,apple-cn,DIRECT
+  - RULE-SET,apple,🍎Apple
   - RULE-SET,bank-hk,DIRECT
-  - RULE-SET,direct,DIRECT
   - RULE-SET,openai,🤖AI
   - RULE-SET,claude,🤖AI
   - RULE-SET,gemini,🤖AI
@@ -612,9 +612,8 @@ rules:
   - RULE-SET,github,💻开发服务
   - RULE-SET,microsoft,Ⓜ️微软服务
   - RULE-SET,google,ⓖ谷歌服务
-  - RULE-SET,apple,🍎Apple
   - RULE-SET,proxy,🔰国外流量
-  - RULE-SET,china,DIRECT
+  - RULE-SET,direct,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
   - GEOIP,PRIVATE,DIRECT,no-resolve
   - MATCH,其他流量
