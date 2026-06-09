@@ -1,0 +1,711 @@
+proxy-providers:
+  local:
+    type: file
+    path: "/Users/advance/ai_workspace/cfw/proxy"
+
+proxy-groups:
+  - name: 🔰国外流量
+    type: select
+    proxies:
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - 🔄故障转移
+      - DIRECT
+  - name: 👋手动选择
+    icon: https://cdn.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png
+    include-all: true
+    type: select
+    exclude-filter: ^1|集客｜实验性｜永久虚通路｜海外连接|问题|二手|限速
+  - name: 🔄故障转移
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png
+    type: fallback
+    url: https://cp.cloudflare.com/generate_204
+    proxies:
+      - 🇭🇰香港节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+    interval: 180
+    tolerance: 20
+    lazy: false
+  - name: 其他流量
+    type: select
+    proxies:
+      - 🔰国外流量
+      - DIRECT
+  - name: 🤖AI
+    icon: https://cdn.jsdelivr.net/gh/powerfullz/override-rules@master/icons/chatgpt.png
+    type: select
+    proxies:
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+
+  - name: 🎬YouTube
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
+    type: select
+    proxies:
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: 🎬Netflix
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
+    type: select
+    proxies:
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 🔰国外流量
+      - 👋手动选择
+      - DIRECT
+  - name: 🍎Apple
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
+    type: select
+    proxies:
+      - DIRECT
+      - 🔰国外流量
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      
+  - name: 📺国际媒体
+    type: select
+    proxies:
+      - 🔰国外流量
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: 💬社交媒体
+    type: select
+    proxies:
+      - 🇺🇸美国节点
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: 🛍️海外服务
+    type: select
+    proxies:
+      - 🔰国外流量
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: 🇺🇸美国金融
+    type: select
+    proxies:
+      - 🇺🇸美国节点
+      - 🇨🇦加拿大节点
+      - 🇬🇧英国节点
+      - 🇸🇬新加坡节点
+      - 🇯🇵日本节点
+      - 👋手动选择
+      - DIRECT
+  - name: 💻开发服务
+    type: select
+    proxies:
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: Ⓜ️微软服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🔰国外流量
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+  - name: ⓖ谷歌服务
+    type: select
+    proxies:
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🇨🇦加拿大节点
+      - 🇫🇷法国节点
+      - 🇦🇺澳大利亚节点
+      - 🇬🇧英国节点
+      - 🇩🇪德国节点
+      - 🇮🇳印度节点
+      - 🍽️台湾节点
+      - 👋手动选择
+      - DIRECT
+  - name: 📱短视频
+    type: select
+    proxies:
+      - DIRECT
+      - 🔰国外流量
+      - 🇭🇰香港节点
+      - 🇸🇬新加坡节点
+      - 🇺🇸美国节点
+      - 🇰🇷韩国节点
+      - 🇯🇵日本节点
+      - 🍽️台湾节点
+      - 👋手动选择
+
+  - name: 🚫广告拦截
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+    hidden: true
+  - name: 🇭🇰香港测速
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
+    include-all: true
+    filter: (?i)香港|港|HK|hk|Hong Kong|HongKong|hongkong|🇭🇰
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇸🇬新加坡测速
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
+    include-all: true
+    filter: (?i)新加坡|坡|狮城|SG|Singapore|🇸🇬
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇺🇸美国测速
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
+    include-all: true
+    filter: (?i)美国|美|'US'|United States|🇺🇸
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇯🇵日本测速
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
+    include-all: true
+    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|🇯🇵
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇲🇴澳门节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Macao.png
+    include-all: true
+    filter: (?i)澳门|MO|Macau|🇲🇴
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+  - name: 🇭🇰香港节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
+    include-all: true
+    filter: (?i)香港|港|HK|hk|Hong Kong|HongKong|hongkong|🇭🇰
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    proxies:
+      - 🇭🇰香港测速
+  - name: 🇸🇬新加坡节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
+    include-all: true
+    filter: (?i)新加坡|坡|狮城|SG|Singapore|🇸🇬
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性
+    type: select
+    proxies:
+      - 🇸🇬新加坡测速
+  - name: 🇺🇸美国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
+    include-all: true
+    filter: (?i)美国|美|'US'|United States|🇺🇸
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    proxies:
+      - 🇺🇸美国测速
+  - name: 🇨🇦加拿大节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Canada.png
+    include-all: true
+    filter: (?i)加拿大|Canada|CA|🇨🇦
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇮🇳印度节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/India.png
+    include-all: true
+    filter: (?i)印度|India|🇮🇳
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🍽️台湾节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png
+    include-all: true
+    filter: (?i)台|新北|彰化|'TW'|Taiwan|🇹🇼
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇯🇵日本节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
+    include-all: true
+    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|🇯🇵
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    proxies:
+      - 🇯🇵日本测速
+  - name: 🇫🇷法国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/France.png
+    include-all: true
+    filter: (?i)法国|法|FR|France|🇫🇷
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇦🇺澳大利亚节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Australia.png
+    include-all: true
+    filter: (?i)澳洲|澳大利亚|'AU'|Australia|🇦🇺
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇬🇧英国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_Kingdom.png
+    include-all: true
+    filter: (?i)英国|United Kingdom|UK|伦敦|London|🇬🇧
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+  - name: 🇰🇷韩国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png
+    include-all: true
+    filter: (?i)KR|Korea|KOR|首尔|韩|韓|🇰🇷
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+  - name: 🇩🇪德国节点
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Germany.png
+    include-all: true
+    filter: (?i)德国|德|'DE'|Germany|🇩🇪
+    exclude-filter: 0.[0-5]|低倍率|省流|大流量|实验性|限速
+    type: select
+    url: https://cp.cloudflare.com/generate_204
+    interval: 60
+    tolerance: 20
+    lazy: false
+    hidden: true
+
+rule-providers:
+  REJECT:
+    type: http
+    behavior: domain
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.txt
+  fake-ip-filter:
+    type: http
+    behavior: domain
+    format: text
+    interval: 86400
+    url: https://cdn.jsdelivr.net/gh/juewuy/ShellCrash@dev/public/fake_ip_filter.list
+    path: ./ruleset/fake_ip_filter.list
+  private:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 36000
+  apple-cn:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/apple-cn.txt"
+    path: ./ruleset/apple-cn.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
+    interval: 86400
+  bank-hk:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@latest/Bank/BankHK_Domain.yaml"
+    path: ./ruleset/bank-hk.yaml
+    interval: 86400
+  openai:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/openai.yaml
+    interval: 86400
+  claude:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
+    path: ./ruleset/claude.yaml
+    interval: 86400
+  gemini:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+    path: ./ruleset/gemini.yaml
+    interval: 86400
+  grok:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/Accademia/Additional_Rule_For_Clash@master/Grok/Grok_Domain.yaml"
+    path: ./ruleset/grok.yaml
+    interval: 86400
+  ai-extra:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/iab0x00/ProxyRules@main/Rule/AI.txt"
+    path: ./ruleset/ai-extra.list
+    interval: 86400
+  youtube:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+    path: ./ruleset/youtube.yaml
+    interval: 86400
+  telegram:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+    path: ./ruleset/telegram.yaml
+    interval: 86400
+  whatsapp:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    path: ./ruleset/whatsapp.yaml
+    interval: 86400
+  paypal:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PayPal/PayPal.yaml"
+    path: ./ruleset/paypal.yaml
+    interval: 86400
+  twitter:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml"
+    path: ./ruleset/twitter.yaml
+    interval: 86400
+  github:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+    path: ./ruleset/github.yaml
+    interval: 86400
+  microsoft:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./ruleset/microsoft.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple.yaml"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+  china:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/China/China.list"
+    path: ./ruleset/china.list
+    interval: 86400
+rules:
+  - RULE-SET,private,DIRECT
+  - RULE-SET,REJECT,🚫广告拦截
+  - RULE-SET,apple-cn,DIRECT
+  - RULE-SET,bank-hk,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,openai,🤖AI
+  - RULE-SET,claude,🤖AI
+  - RULE-SET,gemini,🤖AI
+  - RULE-SET,grok,🤖AI
+  - RULE-SET,ai-extra,🤖AI
+  - RULE-SET,youtube,🎬YouTube
+  - RULE-SET,telegram,💬社交媒体
+  - RULE-SET,whatsapp,💬社交媒体
+  - RULE-SET,twitter,💬社交媒体
+  - RULE-SET,paypal,🇺🇸美国金融
+  - RULE-SET,github,💻开发服务
+  - RULE-SET,microsoft,Ⓜ️微软服务
+  - RULE-SET,google,ⓖ谷歌服务
+  - RULE-SET,apple,🍎Apple
+  - RULE-SET,proxy,🔰国外流量
+  - RULE-SET,china,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - GEOIP,PRIVATE,DIRECT,no-resolve
+  - MATCH,其他流量
+external-controller: 127.0.0.1:9090
+mixed-port: 7890
+allow-lan: true
+log-level: info
+find-process-mode: always
+bind-address: "*"
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+  - 127.0.0.1/8
+dns:
+  enable: true
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*"
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+  default-nameserver:
+    - tls://223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver:
+    - 114.114.114.114
+  use-hosts: false
+  use-system-hosts: false
+sniffer:
+  enable: true
+  override-destination: false
+  sniff:
+    QUIC:
+      ports:
+        - 443
+        - 8443
+    TLS:
+      ports:
+        - 443
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+  skip-domain:
+    - +.push.apple.com
+    - +.icloud.com
+  parse-pure-ip: true
+  force-dns-mapping: true
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
+  force-domain: []
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - any:53
+  mtu: 1500
+profile:
+  store-selected: true
+  store-fake-ip: true
+geo-update-interval: 24
+geox-url:
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+external-controller-cors:
+  allow-origins:
+    - https://metacubex.github.io
+    - https://board.zash.run.place
+    - https://d.metacubex.one
+  allow-private-network: false
